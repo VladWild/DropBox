@@ -43,14 +43,6 @@ public class DropBoxTestController {
         return conversionService.convert(currentAccount, DropBoxInfoDto.class);
     }
 
-    @PostMapping("/file")
-    @ApiOperation("Загрузка файла в dropbox")
-    public ResponseEntity<HttpStatus> downloadFile(@RequestParam("file") MultipartFile file) throws IOException, DbxException {
-        InputStream inputStream = file.getInputStream();
-        client.files().uploadBuilder("/download2/" + file.getName() + "/" + file.getName()).uploadAndFinish(inputStream);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     @PostMapping("/user/photo")
     @ApiOperation("Загрузка фотографии пользователя в dropbox")
     public ResponseEntity<HttpStatus> changeUserPhoto(
